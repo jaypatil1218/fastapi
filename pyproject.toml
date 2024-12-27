@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "zinghr2"
+version = "0.1.0"
+description = ""
+authors = ["jay"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+sqlmodel = "0.0.22"
+sqlalchemy-cockroachdb = "2.0.2"
+psycopg2-binary = "2.9.10"
+fastapi = {extras = ["all"], version = "^0.115.6"}
+pytest = "8.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
