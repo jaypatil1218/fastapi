@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import MagicMock
 from service.employee_services import remove_employee,get_employees
 from model.Employee import Employee
-from db.db import engine  # Assuming 'engine' is already set up in your project
+from db.connection import engine  # Assuming 'engine' is already set up in your project
 
 # Mocking the Session and SQLModel
 # @pytest.fixture
@@ -74,6 +74,9 @@ def validate_employee(employee):
     # Verify that each employee has an 'id' attribute and it is a valid integer
     assert hasattr(employee, 'id'), f"Employee is missing 'id' attribute."
     assert isinstance(employee.id, int), f"Expected 'id' to be an integer, got {type(employee.id)}."
+    assert  isinstance(employee.name,str)
+    assert  isinstance(employee.salary,float)
+    assert  isinstance(employee.department,str)
 
     # Optionally, check if the id is greater than 0 (assuming IDs are positive)
     assert employee.id >0, f"Expected positive 'id', got {employee.id}."
