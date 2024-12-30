@@ -4,7 +4,7 @@ from sqlmodel import Session, select
 from model.Employee import Employee
 from dto.EmployeeRequest import EmployeeRequest
 from dto.EmployeeUpdate import EmployeeUpdate
-from db.db import engine
+from db.connection import engine
 
 def create_db_and_tables():
     from sqlmodel import SQLModel
@@ -16,6 +16,8 @@ def get_employees() -> List[Employee]:
 
 def add_employee(employee_data: EmployeeRequest) -> Employee:
     with Session(engine) as session:
+        if not employee_data.name or employee_data.salary <= 0 or not employee_data.department:
+            raise ValueError("Invalid employee data: Name, salary, and department must be valid.")
         new_employee = Employee(**employee_data.dict())
         session.add(new_employee)
         session.commit()

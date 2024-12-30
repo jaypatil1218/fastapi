@@ -1,12 +1,8 @@
-
-from pydantic import BaseModel
-
+from pydantic import BaseModel, ConfigDict
 
 class EmployeeRequest(BaseModel):
-
     name: str
     salary: float
     department: str
 
-    class Config:
-        orm_mode = True  # Tells Pydantic to treat SQLAlchemy models as dicts
+    model_config = ConfigDict(from_attributes=True)
