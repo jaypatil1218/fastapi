@@ -6,7 +6,7 @@ from dto.EmployeeRequest import EmployeeRequest
 from model.Employee import Employee
 from service.employee_services import add_employee, create_db_and_tables
 from db.connection import engine
-
+import sys
 
 # Ensure database tables are created before running tests
 @pytest.fixture(scope="module", autouse=True)
@@ -63,12 +63,12 @@ def test_add_employee_invalid_data(session, invalid_employee_data):
     with pytest.raises(ValueError):  # Adjust to the specific exception raised
         add_employee(invalid_employee_data)
 
-#
-# def test_add_employee_duplicate_name(session, valid_employee_data):
-#     """Test adding an employee with a duplicate name."""
-#     # Add the first employee
-#     add_employee(valid_employee_data)
-#
-#     # Attempt to add another employee with the same name
-#     with pytest.raises(IntegrityError):  # Assuming the name field has a unique constraint
-#         add_employee(valid_employee_data)
+
+def test_add_employee_duplicate_name(session, valid_employee_data):
+    """Test adding an employee with a duplicate name."""
+    # Add the first employee
+    add_employee(valid_employee_data)
+
+    # Attempt to add another employee with the same name
+    with pytest.raises(IntegrityError):  # Assuming the name field has a unique constraint
+        add_employee(valid_employee_data)

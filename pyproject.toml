@@ -12,6 +12,7 @@ sqlalchemy-cockroachdb = "2.0.2"
 psycopg2-binary = "2.9.10"
 fastapi = {extras = ["all"], version = "^0.115.6"}
 pytest = "8.3.4"
+requests = "^2.32.3"
 
 
 [build-system]
